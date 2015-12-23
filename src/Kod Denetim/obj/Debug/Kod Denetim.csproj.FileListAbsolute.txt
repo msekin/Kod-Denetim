@@ -1,0 +1,14 @@
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\Kod Denetim.exe.config
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\Kod Denetim.exe
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\Kod Denetim.pdb
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\CodeAnalysis.Properties.Resources.resources
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\Kod Denetim.csproj.GenerateResource.Cache
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\Kod Denetim.exe
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\Kod Denetim.pdb
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\CodeAnalysis.MainForm.resources
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\ScintillaNET.dll
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\ScintillaNET.pdb
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\ScintillaNET.xml
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\CodeAnalysis.About.resources
+C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\Antlr4.Runtime.dll
+C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\Kod Denetim.csprojResolveAssemblyReference.cache
