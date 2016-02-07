@@ -202,5 +202,60 @@ namespace CodeAnalysis
             scintilla1.Margins[0].Width = scintilla1.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
         }
+
+        private void GetDirectories(TreeNode nodeToAddTo, string path)
+        {
+            if (nodeToAddTo != null)
+            {
+                nodeToAddTo.Nodes.Clear();
+            }
+            DirectoryInfo dir = new DirectoryInfo(path);
+            foreach (DirectoryInfo subDir in dir.GetDirectories())
+            {
+                TreeNode node = new TreeNode();
+                node = new TreeNode(subDir.Name, 1, 1);
+                node.Tag = subDir.FullName;
+                node.Nodes.Add("");
+                if (nodeToAddTo == null)
+                    treeView1.Nodes.Add(node);
+                else
+                    nodeToAddTo.Nodes.Add(node);
+            }
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                TreeNode node = new TreeNode();
+                node.Text = file.Name;
+                node.ImageIndex = 0;
+                node.SelectedImageIndex = 0;
+                node.Tag = file.FullName;
+                if (nodeToAddTo == null)
+                    treeView1.Nodes.Add(node);
+                else
+                    nodeToAddTo.Nodes.Add(node);
+            }
+        }
+
+        private void treeView1_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.Nodes.Count > 0)
+            {
+                if (e.Node.Nodes[0].Text == "")
+                {
+                    GetDirectories(e.Node, e.Node.Tag.ToString());
+                }
+            }
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                txtFile.Text = folderBrowserDialog1.SelectedPath;
+                treeView1.Nodes.Clear();
+                GetDirectories(null, folderBrowserDialog1.SelectedPath);
+            }    
+        }
+
     }
 }
