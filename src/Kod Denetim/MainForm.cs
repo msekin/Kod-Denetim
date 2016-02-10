@@ -18,6 +18,7 @@ namespace CodeAnalysis
     public partial class MainForm : BaseForm
     {
         private List<ITester> Testers = new List<ITester>();
+        private string selectednode = "";
 
         public MainForm()
         {
@@ -34,24 +35,37 @@ namespace CodeAnalysis
         {
             if(DialogResult.OK != openFileDialog1.ShowDialog())
                 return;
-            string fileName = openFileDialog1.FileName;
-            txtFile.Text = fileName;
-            OpenFile(fileName);
+            //string fileName = openFileDialog1.FileName;
+            //txtFile.Text = fileName;
+            //OpenFile(fileName);
+            if (openFileDialog1.FileNames.Length == 1)
+            {
+                txtFile.Text = openFileDialog1.FileName;
+            }
+            selectednode = "";
+            treeView1.Nodes.Clear();
+            foreach (var filename in openFileDialog1.FileNames)
+            {
+                TreeNode node = new TreeNode();
+                node = new TreeNode(Path.GetFileName(filename), 0, 0);
+                node.Tag = filename;
+                treeView1.Nodes.Add(node);
+            }
         }
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            OpenFile(txtFile.Text);
+            OpenFile(selectednode);
         }
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            if (txtFile.Text == "")
-            {
-                MessageBox.Show("Dosya seçiniz.");
-                return;
-            }
-            if (!ValidatePath(txtFile.Text))
+            //if (txtFile.Text == "")
+            //{
+            //    MessageBox.Show("Dosya seçiniz.");
+            //    return;
+            //}
+            if (!ValidatePath(selectednode))
                 return;
 
             Parse();
@@ -252,9 +266,28 @@ namespace CodeAnalysis
             if (result == DialogResult.OK)
             {
                 txtFile.Text = folderBrowserDialog1.SelectedPath;
+                selectednode = "";
                 treeView1.Nodes.Clear();
-                GetDirectories(null, folderBrowserDialog1.SelectedPath);
+                TreeNode node = new TreeNode();
+                node = new TreeNode(Path.GetFileName(txtFile.Text), 1, 1);
+                node.Tag = txtFile.Text;
+                node.Nodes.Add("");
+                treeView1.Nodes.Add(node);
+                node.Expand();
+                //GetDirectories(node, folderBrowserDialog1.SelectedPath);
             }    
+        }
+
+        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if(treeView1.SelectedNode != null)
+            {
+                if(treeView1.SelectedNode.ImageIndex == 0)
+                {
+                    selectednode = treeView1.SelectedNode.Tag.ToString();
+                    OpenFile(selectednode);
+                }
+            }
         }
 
     }

@@ -57,12 +57,12 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -334,6 +334,7 @@
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.HideSelection = false;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.ımageList1;
             this.treeView1.Location = new System.Drawing.Point(3, 33);
@@ -342,10 +343,7 @@
             this.treeView1.Size = new System.Drawing.Size(194, 383);
             this.treeView1.TabIndex = 5;
             this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Filter = "C++ Files|*.cpp;*.h;*.hpp|Text Files|*.txt|All Files|*.*";
+            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // ımageList1
             // 
@@ -353,6 +351,11 @@
             this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.ımageList1.Images.SetKeyName(0, "document.png");
             this.ımageList1.Images.SetKeyName(1, "folder.png");
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "C++ Files|*.cpp;*.h;*.hpp|Text Files|*.txt|All Files|*.*";
+            this.openFileDialog1.Multiselect = true;
             // 
             // MainForm
             // 
