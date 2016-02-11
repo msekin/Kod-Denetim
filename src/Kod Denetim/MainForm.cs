@@ -137,7 +137,7 @@ namespace CodeAnalysis
 
         private void Parse()
         {
-            using (FileStream filestream = new FileStream(txtFile.Text, FileMode.Open))
+            using (FileStream filestream = new FileStream(selectednode, FileMode.Open))
             {
                 AntlrInputStream inputstream = new AntlrInputStream(filestream);
                 CPP14Lexer lexer = new CPP14Lexer(inputstream);
