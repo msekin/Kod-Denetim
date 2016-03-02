@@ -21,5 +21,7 @@ namespace CodeAnalysis
             LineNumber = lineNumber;
             Message = message;
         }
+
+        // 02.03.2016
     }
 }
