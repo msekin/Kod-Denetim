@@ -22,7 +22,7 @@ namespace CodeAnalysis.Checks
             if (ctx != null)
             {
                 int gap = ctx.Stop.Line - ctx.Start.Line + 1;
-                if (gap > Settings.FunctionMaxLength)
+                if (gap > Properties.Settings.Default.FunctionMaxLength)
                 {
                     ErrorList.AddLast(new Error(ctx.Start.Line, "Uzun fonksiyon"));
                 }
@@ -32,6 +32,11 @@ namespace CodeAnalysis.Checks
         public LinkedList<Error> GetErrors()
         {
             return ErrorList;
+        }
+
+        public void ClearErrors()
+        {
+            ErrorList.Clear();
         }
     }
 }

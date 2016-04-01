@@ -42,5 +42,10 @@ namespace CodeAnalysis.Checks
         {
             return ErrorList;
         }
+
+        public void ClearErrors()
+        {
+            ErrorList.Clear();
+        }
     }
 }

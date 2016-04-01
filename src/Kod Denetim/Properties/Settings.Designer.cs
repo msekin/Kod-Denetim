@@ -22,5 +22,41 @@ namespace CodeAnalysis.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int MaxParamCount {
+            get {
+                return ((int)(this["MaxParamCount"]));
+            }
+            set {
+                this["MaxParamCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int NestedIfDepth {
+            get {
+                return ((int)(this["NestedIfDepth"]));
+            }
+            set {
+                this["NestedIfDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int FunctionMaxLength {
+            get {
+                return ((int)(this["FunctionMaxLength"]));
+            }
+            set {
+                this["FunctionMaxLength"] = value;
+            }
+        }
     }
 }

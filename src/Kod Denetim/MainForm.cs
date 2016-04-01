@@ -17,7 +17,6 @@ namespace CodeAnalysis
 {
     public partial class MainForm : BaseForm
     {
-        private List<ITester> Testers = new List<ITester>();
         private string selectednode = "";
 
         public MainForm()
@@ -68,7 +67,26 @@ namespace CodeAnalysis
             if (!ValidatePath(selectednode))
                 return;
 
-            Parse();
+            ProcessManager p = new ProcessManager();
+            p.Path = selectednode;
+            p.Parse();
+
+            if(p.IsException)
+            {
+                MessageBox.Show(p.ParserException.Message + "\n\n" + p.ParserException.StackTrace, "Kod Denetim", MessageBoxButtons.OK);
+                return;
+            }
+            LinkedList<Error> errors = p.GetErrors();
+            if(errors == null || errors.Count == 0)
+            {
+                MessageBox.Show("Kusurlu kod bulunmadı.", "Kod Denetim", MessageBoxButtons.OK);
+                dataGridView1.Rows.Clear();
+                label3.Text = "0";
+                return;
+            }
+            dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = errors;
+            label3.Text = dataGridView1.Rows.Count.ToString();
         }
 
         private string OpenFileDialog()
@@ -123,70 +141,19 @@ namespace CodeAnalysis
             return true;
         }
 
-        private void PrepTesters()
-        {
-            Testers = new List<ITester>();
-            Testers.Add(new GotoTester());
-            Testers.Add(new ParamCountTester());
-            Testers.Add(new NestedIfTester());
-            Testers.Add(new LongFunctionTester());
-            //Testers.Add(new NoCommentTester());
-            Testers.Add(new AssignmentInIfTester());
-            Testers.Add(new EmptyCatchTester());
-        }
-
-        private void Parse()
-        {
-            using (FileStream filestream = new FileStream(selectednode, FileMode.Open))
-            {
-                AntlrInputStream inputstream = new AntlrInputStream(filestream);
-                CPP14Lexer lexer = new CPP14Lexer(inputstream);
-                CommonTokenStream tokens = new CommonTokenStream(lexer);
-                CPP14Parser parser = new CPP14Parser(tokens);
-                CPP14Parser.TranslationunitContext translationunit = parser.translationunit();
-                
-                if(translationunit.exception != null)
-                {
-                    MessageBox.Show(translationunit.exception.Message + "\n\n" + translationunit.exception.StackTrace, "Kod Denetim", MessageBoxButtons.OK);
-                    return;
-                }
-
-                PrepTesters();
-                Walk(translationunit);
-                
-                dataGridView1.Rows.Clear();
-                Testers.ForEach(tester => 
-                    {
-                        LinkedList<Error> errors = tester.GetErrors();
-                        if (errors == null)
-                            return;
-                        foreach (var error in errors)
-                            dataGridView1.Rows.Add(error.LineNumber, error.Message);
-                    });
-                if(dataGridView1.Rows.Count == 0)
-                {
-                    MessageBox.Show("Kusurlu kod bulunmadı.", "Kod Denetim", MessageBoxButtons.OK);
-                }
-                label3.Text = dataGridView1.Rows.Count.ToString();
-            }
-        }
-
-        private void Walk(IParseTree t)
-        {
-            if (t is IErrorNode)
-            {
-                return;
-            }
-            Testers.ForEach(tester => tester.Test(t));
-            for (int i = 0; i < t.ChildCount; i++)
-            {                
-                Walk(t.GetChild(i));
-            }
-        }
-
         private void menuItem11_Click(object sender, EventArgs e)
         {
             btnBrowse_Click(null, null);
+        }
+
+        private void menuItem12_Click(object sender, EventArgs e)
+        {
+            btnReload_Click(null, null);
+        }
+
+        private void menuItem13_Click(object sender, EventArgs e)
+        {
+            btnOpenFolder_Click(null, null);
         }
 
         private void menuItem31_Click(object sender, EventArgs e)
@@ -194,15 +161,16 @@ namespace CodeAnalysis
             btnRun_Click(null, null);
         }
 
+        private void menuItem41_Click(object sender, EventArgs e)
+        {
+            SettingsForm frmSettingsForm = new SettingsForm();
+            frmSettingsForm.ShowDialog();
+        }
+
         private void menuItem51_Click(object sender, EventArgs e)
         {
             About frmAbout = new About();
             frmAbout.ShowDialog();
-        }
-
-        private void menuItem12_Click(object sender, EventArgs e)
-        {
-            btnReload_Click(null, null);
         }
 
         private int maxLineNumberCharLength;
@@ -237,15 +205,19 @@ namespace CodeAnalysis
             }
             foreach (FileInfo file in dir.GetFiles())
             {
-                TreeNode node = new TreeNode();
-                node.Text = file.Name;
-                node.ImageIndex = 0;
-                node.SelectedImageIndex = 0;
-                node.Tag = file.FullName;
-                if (nodeToAddTo == null)
-                    treeView1.Nodes.Add(node);
-                else
-                    nodeToAddTo.Nodes.Add(node);
+                string fnl = file.Name.ToLower();
+                if (fnl.EndsWith(".cpp") || fnl.EndsWith(".h") || fnl.EndsWith(".hpp") || fnl.EndsWith(".txt"))
+                {
+                    TreeNode node = new TreeNode();
+                    node.Text = file.Name;
+                    node.ImageIndex = 0;
+                    node.SelectedImageIndex = 0;
+                    node.Tag = file.FullName;
+                    if (nodeToAddTo == null)
+                        treeView1.Nodes.Add(node);
+                    else
+                        nodeToAddTo.Nodes.Add(node);
+                }
             }
         }
 
@@ -289,6 +261,5 @@ namespace CodeAnalysis
                 }
             }
         }
-
     }
 }

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace CodeAnalysis.Checks
 {
-    interface ITester
+    public interface ITester
     {
         void Test(IParseTree t);
         LinkedList<Error> GetErrors();
+        void ClearErrors();
     }
 }

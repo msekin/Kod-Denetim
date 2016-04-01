@@ -34,6 +34,11 @@ namespace CodeAnalysis.Checks
             return ErrorList;
         }
 
+        public void ClearErrors()
+        {
+            ErrorList.Clear();
+        }
+
         private bool Walk(IParseTree t)
         {
             ITerminalNode terminalNode = t as ITerminalNode;

@@ -24,7 +24,7 @@ namespace CodeAnalysis.Checks
             if(ctx != null)
             {
                 int count = Walk(t);
-                if (count > Settings.MaxParamCount)
+                if (count > Properties.Settings.Default.MaxParamCount)
                 {
                     ErrorList.AddLast(new Error(ctx.Start.Line, "Çok fazla parametre"));
                 }
@@ -52,6 +52,11 @@ namespace CodeAnalysis.Checks
                 j += Walk(ctx.children[i]);
             }
             return j;
+        }
+
+        public void ClearErrors()
+        {
+            ErrorList.Clear();
         }
     }
 }

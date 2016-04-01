@@ -25,7 +25,7 @@ namespace CodeAnalysis.Checks
             if (ctx != null)
             {
                 Walk(t, 0);
-                if (depth > Settings.NestedIfDepth)
+                if (depth > Properties.Settings.Default.NestedIfDepth)
                 {
                     ErrorList.AddLast(new Error(ctx.Start.Line, "İç içe yuvalanmış \"if\""));
                 }
@@ -35,6 +35,11 @@ namespace CodeAnalysis.Checks
         public LinkedList<Error> GetErrors()
         {
             return ErrorList;
+        }
+
+        public void ClearErrors()
+        {
+            ErrorList.Clear();
         }
 
         private void Walk(IParseTree t, int level)

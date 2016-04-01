@@ -35,9 +35,10 @@
             this.menuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menutItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem31 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem31 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem41 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem51 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -63,6 +64,7 @@
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.menuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,8 +77,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItem1,
             this.menuItem2,
-            this.menutItem3,
             this.menuItem3,
+            this.menuItem4,
             this.menuItem5});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -88,6 +90,7 @@
             // 
             this.menuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItem11,
+            this.menuItem13,
             this.menuItem12});
             this.menuItem1.Name = "menuItem1";
             this.menuItem1.Size = new System.Drawing.Size(51, 20);
@@ -96,14 +99,14 @@
             // menuItem11
             // 
             this.menuItem11.Name = "menuItem11";
-            this.menuItem11.Size = new System.Drawing.Size(106, 22);
-            this.menuItem11.Text = "Aç";
+            this.menuItem11.Size = new System.Drawing.Size(152, 22);
+            this.menuItem11.Text = "Dosya Aç";
             this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
             // 
             // menuItem12
             // 
             this.menuItem12.Name = "menuItem12";
-            this.menuItem12.Size = new System.Drawing.Size(106, 22);
+            this.menuItem12.Size = new System.Drawing.Size(152, 22);
             this.menuItem12.Text = "Yenile";
             this.menuItem12.Click += new System.EventHandler(this.menuItem12_Click);
             // 
@@ -113,26 +116,35 @@
             this.menuItem2.Size = new System.Drawing.Size(61, 20);
             this.menuItem2.Text = "Düzenle";
             // 
-            // menutItem3
+            // menuItem3
             // 
-            this.menutItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItem31});
-            this.menutItem3.Name = "menutItem3";
-            this.menutItem3.Size = new System.Drawing.Size(54, 20);
-            this.menutItem3.Text = "Debug";
+            this.menuItem3.Name = "menuItem3";
+            this.menuItem3.Size = new System.Drawing.Size(54, 20);
+            this.menuItem3.Text = "Debug";
             // 
             // menuItem31
             // 
             this.menuItem31.Name = "menuItem31";
-            this.menuItem31.Size = new System.Drawing.Size(110, 22);
-            this.menuItem31.Text = "Çalıştır";
+            this.menuItem31.Size = new System.Drawing.Size(152, 22);
+            this.menuItem31.Text = "Denetle";
             this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
             // 
-            // menuItem3
+            // menuItem4
             // 
-            this.menuItem3.Name = "menuItem3";
-            this.menuItem3.Size = new System.Drawing.Size(56, 20);
-            this.menuItem3.Text = "Ayarlar";
+            this.menuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItem41});
+            this.menuItem4.Name = "menuItem4";
+            this.menuItem4.Size = new System.Drawing.Size(56, 20);
+            this.menuItem4.Text = "Ayarlar";
+            // 
+            // menuItem41
+            // 
+            this.menuItem41.Name = "menuItem41";
+            this.menuItem41.Size = new System.Drawing.Size(130, 22);
+            this.menuItem41.Text = "Seçenekler";
+            this.menuItem41.Click += new System.EventHandler(this.menuItem41_Click);
             // 
             // menuItem5
             // 
@@ -305,7 +317,7 @@
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 23);
             this.btnRun.TabIndex = 3;
-            this.btnRun.Text = "    Çalıştır";
+            this.btnRun.Text = "    Denetle";
             this.toolTip3.SetToolTip(this.btnRun, "Çalıştır");
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
@@ -357,6 +369,13 @@
             this.openFileDialog1.Filter = "C++ Files|*.cpp;*.h;*.hpp|Text Files|*.txt|All Files|*.*";
             this.openFileDialog1.Multiselect = true;
             // 
+            // menuItem13
+            // 
+            this.menuItem13.Name = "menuItem13";
+            this.menuItem13.Size = new System.Drawing.Size(152, 22);
+            this.menuItem13.Text = "Klasör Aç";
+            this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,7 +409,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItem2;
         private System.Windows.Forms.ToolStripMenuItem menuItem5;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuItem3;
+        private System.Windows.Forms.ToolStripMenuItem menuItem4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private ScintillaNET.Scintilla scintilla1;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -403,7 +422,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.ToolStripMenuItem menuItem11;
-        private System.Windows.Forms.ToolStripMenuItem menutItem3;
+        private System.Windows.Forms.ToolStripMenuItem menuItem3;
         private System.Windows.Forms.ToolStripMenuItem menuItem31;
         private System.Windows.Forms.ToolStripMenuItem menuItem51;
         private System.Windows.Forms.Label label3;
@@ -418,6 +437,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.ImageList ımageList1;
+        private System.Windows.Forms.ToolStripMenuItem menuItem41;
+        private System.Windows.Forms.ToolStripMenuItem menuItem13;
 
     }
 }

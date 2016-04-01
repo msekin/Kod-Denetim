@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeAnalysis
 {
-    class Error
+    public class Error
     {
         public int LineNumber { get; set; }
         public string Message { get; set; }
@@ -21,7 +21,5 @@ namespace CodeAnalysis
             LineNumber = lineNumber;
             Message = message;
         }
-
-        // 02.03.2016
     }
 }
