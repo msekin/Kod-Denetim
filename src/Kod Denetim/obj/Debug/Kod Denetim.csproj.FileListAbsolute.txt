@@ -12,3 +12,14 @@ C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\ScintillaNET.xml
 C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\CodeAnalysis.About.resources
 C:\Projeler\Kod Denetim\Kod Denetim\bin\Debug\Antlr4.Runtime.dll
 C:\Projeler\Kod Denetim\Kod Denetim\obj\Debug\Kod Denetim.csprojResolveAssemblyReference.cache
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\bin\Debug\Kod Denetim.exe.config
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\Kod Denetim.exe
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\Kod Denetim.pdb
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\CodeAnalysis.About.resources
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\CodeAnalysis.MainForm.resources
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\CodeAnalysis.Properties.Resources.resources
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\Kod Denetim.csproj.GenerateResource.Cache
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\bin\Debug\Kod Denetim.exe
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\bin\Debug\Kod Denetim.pdb
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\CodeAnalysis.SettingsForm.resources
+C:\Users\msekin\Documents\GitHub\Kod-Denetim\src\Kod Denetim\obj\Debug\Kod Denetim.csprojResolveAssemblyReference.cache
