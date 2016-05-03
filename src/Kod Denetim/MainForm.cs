@@ -80,12 +80,17 @@ namespace CodeAnalysis
             if(errors == null || errors.Count == 0)
             {
                 MessageBox.Show("Kusurlu kod bulunmadı.", "Kod Denetim", MessageBoxButtons.OK);
-                dataGridView1.Rows.Clear();
+                //dataGridView1.Rows.Clear();
                 label3.Text = "0";
                 return;
             }
-            dataGridView1.Rows.Clear();
-            dataGridView1.DataSource = errors;
+            //dataGridView1.Rows.Clear();
+            var bl = new BindingList<Error>();
+            foreach (var item in errors)
+	        {
+                bl.Add(item);
+            }
+            dataGridView1.DataSource = bl;
             label3.Text = dataGridView1.Rows.Count.ToString();
         }
 

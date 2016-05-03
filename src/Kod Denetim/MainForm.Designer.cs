@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +46,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.scintilla1 = new ScintillaNET.Scintilla();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.LineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,7 +63,8 @@
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.menuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -99,14 +99,21 @@
             // menuItem11
             // 
             this.menuItem11.Name = "menuItem11";
-            this.menuItem11.Size = new System.Drawing.Size(152, 22);
+            this.menuItem11.Size = new System.Drawing.Size(123, 22);
             this.menuItem11.Text = "Dosya Aç";
             this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Name = "menuItem13";
+            this.menuItem13.Size = new System.Drawing.Size(123, 22);
+            this.menuItem13.Text = "Klasör Aç";
+            this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
             // 
             // menuItem12
             // 
             this.menuItem12.Name = "menuItem12";
-            this.menuItem12.Size = new System.Drawing.Size(152, 22);
+            this.menuItem12.Size = new System.Drawing.Size(123, 22);
             this.menuItem12.Text = "Yenile";
             this.menuItem12.Click += new System.EventHandler(this.menuItem12_Click);
             // 
@@ -127,7 +134,7 @@
             // menuItem31
             // 
             this.menuItem31.Name = "menuItem31";
-            this.menuItem31.Size = new System.Drawing.Size(152, 22);
+            this.menuItem31.Size = new System.Drawing.Size(114, 22);
             this.menuItem31.Text = "Denetle";
             this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
             // 
@@ -208,26 +215,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LineNumber,
-            this.Error});
+            this.Message});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(506, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(193, 383);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // LineNumber
-            // 
-            this.LineNumber.HeaderText = "Satır";
-            this.LineNumber.Name = "LineNumber";
-            this.LineNumber.ReadOnly = true;
-            this.LineNumber.Width = 50;
-            // 
-            // Error
-            // 
-            this.Error.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Error.HeaderText = "Mesaj";
-            this.Error.Name = "Error";
             // 
             // panel2
             // 
@@ -369,12 +363,20 @@
             this.openFileDialog1.Filter = "C++ Files|*.cpp;*.h;*.hpp|Text Files|*.txt|All Files|*.*";
             this.openFileDialog1.Multiselect = true;
             // 
-            // menuItem13
+            // LineNumber
             // 
-            this.menuItem13.Name = "menuItem13";
-            this.menuItem13.Size = new System.Drawing.Size(152, 22);
-            this.menuItem13.Text = "Klasör Aç";
-            this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
+            this.LineNumber.DataPropertyName = "LineNumber";
+            this.LineNumber.HeaderText = "Satır";
+            this.LineNumber.Name = "LineNumber";
+            this.LineNumber.ReadOnly = true;
+            this.LineNumber.Width = 50;
+            // 
+            // Message
+            // 
+            this.Message.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Message.DataPropertyName = "Message";
+            this.Message.HeaderText = "Mesaj";
+            this.Message.Name = "Message";
             // 
             // MainForm
             // 
@@ -413,8 +415,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private ScintillaNET.Scintilla scintilla1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LineNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Error;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtFile;
@@ -439,6 +439,8 @@
         private System.Windows.Forms.ImageList ımageList1;
         private System.Windows.Forms.ToolStripMenuItem menuItem41;
         private System.Windows.Forms.ToolStripMenuItem menuItem13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Message;
 
     }
 }

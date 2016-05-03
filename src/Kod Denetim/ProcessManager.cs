@@ -20,6 +20,8 @@ namespace CodeAnalysis
 
         public Exception ParserException { get; private set; }
 
+        private LinkedList<Error> tempError = new LinkedList<Error>();
+
         public ProcessManager()
         {
             PrepTesters();
@@ -98,9 +100,14 @@ namespace CodeAnalysis
                 LinkedList<Error> tmp = item.GetErrors();
                 if (tmp != null)
                 {
-                    errors.Concat(tmp);
+                    //errors.Concat(tmp);
+                    foreach (var item2 in tmp)
+                        errors.AddLast(new Error(item2.LineNumber, item2.Message));
                 }
             }
+            //errors.Concat(tempError);
+            foreach (var item in tempError)
+                errors.AddLast(new Error(item.LineNumber, item.Message));
             return errors;
         }
 
@@ -108,6 +115,7 @@ namespace CodeAnalysis
         {
             IsException = false;
             ParserException = null;
+            tempError.Clear();
             ClearErrors();
 
             using (FileStream filestream = new FileStream(Path, FileMode.Open))
@@ -126,6 +134,11 @@ namespace CodeAnalysis
                 }
 
                 Walk(translationunit);
+
+                ProgramStruct prog = new ProgramStruct();
+                prog.Walk(translationunit);
+
+                tempError = Checks.Metrics.LCOMMeasure.Test(prog);
             }
         }
 
