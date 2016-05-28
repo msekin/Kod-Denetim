@@ -12,6 +12,7 @@ namespace CodeAnalysis
         public string name;
         public string className;
         public List<string> fields = new List<string>();
+        public List<VarStruct> variables = new List<VarStruct>();
 
         public void WalkFunctionDefinition(IParseTree t)
         {
@@ -40,7 +41,11 @@ namespace CodeAnalysis
                 CPP14Parser.UnqualifiedidContext t2 = t as CPP14Parser.UnqualifiedidContext;
                 fields.Add(t2.Identifier().Symbol.Text);
             }
-
+            if(t is CPP14Parser.SimpledeclarationContext)
+            {
+                VarStruct var = GetDeclaration(t);
+                variables.Add(var);
+            }
             for (int i = 0; i < t.ChildCount; i++)
             {
                 WalkFunctionBody(t.GetChild(i));
@@ -57,6 +62,31 @@ namespace CodeAnalysis
                 }
             }
             fields.Add(field);
+        }
+
+        public VarStruct GetDeclaration(IParseTree t)
+        {
+            VarStruct var = new VarStruct();
+            WalkDeclaration(t, ref var);
+            return var;
+        }
+
+        public void WalkDeclaration(IParseTree t, ref VarStruct s)
+        {
+            if (t is CPP14Parser.ClassnameContext)
+            {
+                CPP14Parser.ClassnameContext t2 = t as CPP14Parser.ClassnameContext;
+                s.type = t2.Identifier().Symbol.Text;
+            }
+            if (t is CPP14Parser.UnqualifiedidContext)
+            {
+                CPP14Parser.UnqualifiedidContext t2 = t as CPP14Parser.UnqualifiedidContext;
+                s.name = t2.Identifier().Symbol.Text;
+            }            
+            for (int i = 0; i < t.ChildCount; i++)
+            {
+                WalkDeclaration(t.GetChild(i), ref s);
+            }
         }
     }
 }

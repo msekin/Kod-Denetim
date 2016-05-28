@@ -139,6 +139,11 @@ namespace CodeAnalysis
                 prog.Walk(translationunit);
 
                 tempError = Checks.Metrics.LCOMMeasure.Test(prog);
+                var a = Checks.Metrics.CBOMeasure.Test(prog);
+                foreach (var item in a)
+                {
+                    tempError.AddLast(item);
+                }
             }
         }
 

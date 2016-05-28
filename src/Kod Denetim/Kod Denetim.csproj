@@ -69,6 +69,7 @@
     <Compile Include="Checks\GotoTester.cs" />
     <Compile Include="Checks\ITester.cs" />
     <Compile Include="Checks\LongFunctionTester.cs" />
+    <Compile Include="Checks\Metrics\CBOMeasure.cs" />
     <Compile Include="Checks\Metrics\LCOMMeasure.cs" />
     <Compile Include="Checks\NestedIfTester.cs" />
     <Compile Include="Checks\NoCommentTester.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VarStruct.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
