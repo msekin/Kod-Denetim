@@ -30,9 +30,11 @@ namespace CodeAnalysis.Checks.Metrics
                 int mA = item.methods.Count(method => method.fields.Count > 0);
                 //int summA = SumofUsedFields(item);
                 int summA = item.methods.Sum(method => method.fields.Count);
-
-                float lcom2 = 1 - (float)summA / (m * a);
-                errors.AddLast(new Error(-1, string.Format("{0} sınıfına ait LCOM değeri {1:0.##}", item.name, lcom2)));
+                float lcom2 = 0;
+                if(m * a != 0)
+                    lcom2 = 1 - (float)summA / (m * a);
+                if(lcom2 >= Properties.Settings.Default.LCOM_Threshold)
+                    errors.AddLast(new Error(-1, string.Format("{0} sınıfına ait LCOM değeri {1:0.##}", item.name, lcom2)));
 	        }
 
             return errors;

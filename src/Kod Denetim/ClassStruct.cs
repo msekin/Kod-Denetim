@@ -15,17 +15,27 @@ namespace CodeAnalysis
 
         public void WalkClass(IParseTree t)
         {
-            if (t is CPP14Parser.ClassnameContext)
+            if (t is CPP14Parser.ClassnameContext && name == null)
             {
                 CPP14Parser.ClassnameContext t2 = t as CPP14Parser.ClassnameContext;
                 name = t2.Identifier().Symbol.Text;
+            }
+            if (t is CPP14Parser.FunctiondefinitionContext)
+            {
+                FunctionStruct f = new FunctionStruct();
+                f.WalkFunctionDefinition(t);
+                f.fields.RemoveAll(s => !fields.Contains(s));
+                f.className = name;
+                AddMethod(f);
+
+                return;
             }
             if (t is CPP14Parser.MemberdeclarationContext)
             {
                 IParseTree t2 = t.GetChild(1);
                 while (true)
                 {
-                    if (t2.ChildCount > 1)
+                    if (t2 == null || t2.ChildCount > 1)
                     {
                         break;
                     }

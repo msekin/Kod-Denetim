@@ -58,5 +58,29 @@ namespace CodeAnalysis.Properties {
                 this["FunctionMaxLength"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
+        public float LCOM_Threshold {
+            get {
+                return ((float)(this["LCOM_Threshold"]));
+            }
+            set {
+                this["LCOM_Threshold"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int CBO_Threshold {
+            get {
+                return ((int)(this["CBO_Threshold"]));
+            }
+            set {
+                this["CBO_Threshold"] = value;
+            }
+        }
     }
 }

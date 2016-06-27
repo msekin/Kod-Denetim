@@ -23,7 +23,7 @@ namespace CodeAnalysis.Checks.Metrics
                 int i = 0;
                 foreach (var item2 in item1.methods)
                 {
-                    foreach (var item3 in item2.variables)
+                    foreach (var item3 in item2.variables.GroupBy(test => test.type).Select(grp => grp.First()))
                     {
                         if (prog.classes.Any(cls => cls.name == item3.type))
                         {
@@ -31,7 +31,7 @@ namespace CodeAnalysis.Checks.Metrics
                         }
                     }
                 }
-                if (i > 0)
+                if (i > 0 && i >= Properties.Settings.Default.CBO_Threshold)
                 {
                     errors.AddLast(new Error(-1, string.Format("{0} sınıfına ait CBO değeri {1:#}", item1.name, i)));
                 }

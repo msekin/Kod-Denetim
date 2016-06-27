@@ -46,6 +46,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.scintilla1 = new ScintillaNET.Scintilla();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.LineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.LineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -222,6 +222,22 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(193, 383);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
+            // 
+            // LineNumber
+            // 
+            this.LineNumber.DataPropertyName = "LineNumber";
+            this.LineNumber.HeaderText = "Satır";
+            this.LineNumber.Name = "LineNumber";
+            this.LineNumber.ReadOnly = true;
+            this.LineNumber.Width = 50;
+            // 
+            // Message
+            // 
+            this.Message.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Message.DataPropertyName = "Message";
+            this.Message.HeaderText = "Mesaj";
+            this.Message.Name = "Message";
             // 
             // panel2
             // 
@@ -363,21 +379,6 @@
             this.openFileDialog1.Filter = "C++ Files|*.cpp;*.h;*.hpp|Text Files|*.txt|All Files|*.*";
             this.openFileDialog1.Multiselect = true;
             // 
-            // LineNumber
-            // 
-            this.LineNumber.DataPropertyName = "LineNumber";
-            this.LineNumber.HeaderText = "Satır";
-            this.LineNumber.Name = "LineNumber";
-            this.LineNumber.ReadOnly = true;
-            this.LineNumber.Width = 50;
-            // 
-            // Message
-            // 
-            this.Message.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Message.DataPropertyName = "Message";
-            this.Message.HeaderText = "Mesaj";
-            this.Message.Name = "Message";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,7 +390,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(718, 504);
             this.Name = "MainForm";
-            this.Text = "Kod Denetim";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

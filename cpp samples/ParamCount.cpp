@@ -11,12 +11,14 @@ int f2(int a)
 	// do something
 }
 
-int f3(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k int l)
+int f3(int a, int b, int c, int d)
 {
 	// do something
 }
 
 int main()
 {
-	// do something
+	f1();
+	f2(1);
+	f3(1, 2, 3, 4);
 }

@@ -50,6 +50,11 @@ namespace CodeAnalysis
                 node.Tag = filename;
                 treeView1.Nodes.Add(node);
             }
+            if (openFileDialog1.FileNames.Length == 1)
+            {
+                selectednode = openFileDialog1.FileName;
+                OpenFile(selectednode);
+            }
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -79,12 +84,13 @@ namespace CodeAnalysis
             LinkedList<Error> errors = p.GetErrors();
             if(errors == null || errors.Count == 0)
             {
+                dataGridView1.Rows.Clear();
                 MessageBox.Show("Kusurlu kod bulunmadı.", "Kod Denetim", MessageBoxButtons.OK);
                 //dataGridView1.Rows.Clear();
                 label3.Text = "0";
                 return;
             }
-            //dataGridView1.Rows.Clear();
+            dataGridView1.Rows.Clear();
             var bl = new BindingList<Error>();
             foreach (var item in errors)
 	        {
@@ -92,6 +98,13 @@ namespace CodeAnalysis
             }
             dataGridView1.DataSource = bl;
             label3.Text = dataGridView1.Rows.Count.ToString();
+            //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            //{
+            //    if((int)dataGridView1.Rows[i].Cells[0].Value == -1)
+            //    {
+            //        dataGridView1.Rows[i].Cells[0].Value = "";
+            //    }
+            //}
         }
 
         private string OpenFileDialog()
@@ -263,6 +276,21 @@ namespace CodeAnalysis
                 {
                     selectednode = treeView1.SelectedNode.Tag.ToString();
                     OpenFile(selectednode);
+                }
+            }
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (e.Value != null)
+                {
+                    if (e.Value.ToString() == "-1")
+                    {
+                        e.CellStyle.ForeColor = e.CellStyle.BackColor;
+                        e.CellStyle.SelectionForeColor = e.CellStyle.SelectionBackColor;
+                    }
                 }
             }
         }
